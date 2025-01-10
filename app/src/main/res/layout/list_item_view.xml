@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="2dp"
+    android:background="@drawable/item_view_background"
+    android:paddingHorizontal="4dp"
+    android:layout_margin="3dp">
+
+    <TextView
+        android:id="@+id/list_item_view_txtItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
+        app:layout_constraintEnd_toStartOf="@+id/list_item_view_txtItemQty"
+        android:text="ITEM"/>
+
+    <TextView
+        android:id="@+id/list_item_view_txtItemQty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/list_item_view_txtItemName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
+        app:layout_constraintEnd_toStartOf="@+id/list_item_view_txtItemUnit"
+        android:text="QTY"/>
+
+    <TextView
+        android:id="@+id/list_item_view_txtItemUnit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/list_item_view_txtItemQty"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
+        app:layout_constraintEnd_toStartOf="@+id/list_item_view_imgBtnMinus"
+        android:text="UNIT"/>
+
+    <ImageButton
+        android:id="@+id/list_item_view_imgBtnMinus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_minus_24"
+        android:background="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/list_item_view_txtItemUnit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
