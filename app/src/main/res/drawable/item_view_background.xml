@@ -6,6 +6,9 @@
         android:color="@color/black"
         android:width="2dp"/>
 
+    <solid
+        android:color="@color/mindaro_yellow"/>
+
     <corners
         android:radius="6dp"/>
 

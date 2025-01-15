@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ListsActivity"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@color/sail_blue">
 
     <TextView
         android:id="@+id/lists_txtTitle"

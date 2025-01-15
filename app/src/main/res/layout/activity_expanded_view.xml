@@ -6,14 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ExpandedViewActivity"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@color/sail_blue">
 
     <ImageButton
         android:id="@+id/expanded_view_close"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:src="@drawable/baseline_chevron_left_24"
-        android:background="@color/white"
+        android:background="@color/sail_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/expanded_view_linear1"/>

@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="darkest_blue">#36474d</color>
+    <color name="dark_blue">#7195a2</color>
+    <color name="spray_blue">#76d1f1</color>
+    <color name="sail_blue">#ade3f7</color>
+    <color name="tropical_blue">#b9e5f5</color>
+    <color name="mindaro_yellow">#eef589</color>
+    <color name="cornfield_yellow">#f4f7b7</color>
+    <color name="light_purple">#d0adf7</color>
+    <color name="manhattan_red">#f7baad</color>
 </resources>
