@@ -13,6 +13,7 @@ import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.activities.ExpandedViewActivity;
 import com.example.activityonesqlite.models.ScheduleModel;
+import com.example.activityonesqlite.utilites.DialogUtility;
 
 import java.util.List;
 
@@ -53,11 +54,19 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DBHelper(context).deleteSchedule(date, location);
+                DialogUtility dialogUtility = new DialogUtility(context);
+                dialogUtility.setAlertDialog(new DialogUtility.DialogCallback() {
+                    @Override
+                    public void onResult(boolean proceed) {
+                        if (proceed) {
+                            new DBHelper(context).deleteSchedule(date, location);
 
-                allSchedules.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-                notifyItemRangeChanged(holder.getAdapterPosition(), allSchedules.size());
+                            allSchedules.remove(holder.getAdapterPosition());
+                            notifyItemRemoved(holder.getAdapterPosition());
+                            notifyItemRangeChanged(holder.getAdapterPosition(), allSchedules.size());
+                        }
+                    }
+                });
             }
         });
     }

@@ -12,10 +12,11 @@
         android:id="@+id/lists_txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="List Reports"
+        android:text="Lists Report"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center_horizontal"
         android:layout_marginBottom="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

@@ -94,7 +94,7 @@
         android:orientation="horizontal"
         android:weightSum="5"
         app:layout_constraintTop_toBottomOf="@id/expanded_view_recyclerList"
-        app:layout_constraintBottom_toTopOf="@+id/expanded_view_linear5">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <EditText
             android:id="@+id/expanded_view_edtxtNewItem"
@@ -135,36 +135,36 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/expanded_view_linear5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:weightSum="3.2"
-        app:layout_constraintTop_toBottomOf="@+id/expanded_view_linear4"
-        app:layout_constraintBottom_toBottomOf="parent">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/expanded_view_linear5"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="3.2"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/expanded_view_linear4"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-        <Button
-            android:id="@+id/expanded_view_btnEdit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Edit" />
+<!--        <Button-->
+<!--            android:id="@+id/expanded_view_btnEdit"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1.5"-->
+<!--            android:text="Edit" />-->
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1" />
+<!--        <View-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="0.1" />-->
 
-        <Button
-            android:id="@+id/expanded_view_btnConfrim"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.5"
-            android:text="Confirm" />
+<!--        <Button-->
+<!--            android:id="@+id/expanded_view_btnConfrim"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1.5"-->
+<!--            android:text="Confirm" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

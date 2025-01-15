@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
-import com.example.activityonesqlite.activities.ExpandedViewActivity;
 import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.models.ItemModel;
+import com.example.activityonesqlite.utilites.DialogUtility;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
     Context context;
     List<ItemModel> allItemLists;
 
-    public ItemListAdapter(Context context, List<ItemModel> allItemLists){
+    public ItemListAdapter(Context context, List<ItemModel> allItemLists) {
         this.context = context;
         this.allItemLists = allItemLists;
     }
@@ -42,16 +42,27 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
         holder.txtItemUnit.setText(currentItem.getItemUnit());
 
         holder.imgBtnMinus.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                boolean isDeleted = dbHelper.deleteListItem(currentItem.getScheduleId(), currentItem.getItemName());
-                if (isDeleted){
-                    allItemLists.remove(holder.getAdapterPosition());
-                    notifyItemRemoved(holder.getAdapterPosition());
-                    notifyItemRangeChanged(holder.getAdapterPosition(), allItemLists.size());
-                } else {
-                    Toast.makeText(context, "Item Deletion Failed", Toast.LENGTH_SHORT).show();
-                }
+                DialogUtility dialogUtility = new DialogUtility(context);
+
+                dialogUtility.setAlertDialog(new DialogUtility.DialogCallback() {
+                    @Override
+                    public void onResult(boolean proceed) {
+                        if (proceed) {
+                            boolean isDeleted = dbHelper.deleteListItem(currentItem.getScheduleId(), currentItem.getItemName());
+                            if (isDeleted) {
+                                allItemLists.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+                                notifyItemRangeChanged(holder.getAdapterPosition(), allItemLists.size());
+                            } else {
+                                Toast.makeText(context, "Item Deletion Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                });
+
             }
         });
     }

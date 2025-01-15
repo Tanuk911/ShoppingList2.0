@@ -28,7 +28,7 @@ public class ExpandedViewActivity extends AppCompatActivity {
     ImageButton btnBack;
     TextView txtDate, txtLocation;
     RecyclerView listsRecyclerView;
-    Button btnPlus, btnEdit, btnConfirm;
+    Button btnPlus;
     EditText edTxtAddItem, edTxtQuantity;
     Spinner spinnerUnits;
     AdapterUtility adapterUtility = new AdapterUtility(ExpandedViewActivity.this);
@@ -128,15 +128,6 @@ public class ExpandedViewActivity extends AppCompatActivity {
             edTxtAddItem.setText("");
             edTxtQuantity.setText("");
             setupRecyclerView();
-        }
-    }
-
-    public void deleteItemFromList(String itemName){
-        int scheduleId = dbHelper.getScheduleId(getExtras()[0], getExtras()[1]);
-        if(dbHelper.deleteListItem(scheduleId, itemName)){
-            Toast.makeText(this, "Item Deleted", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Item Not Deleted", Toast.LENGTH_SHORT).show();
         }
     }
 }
