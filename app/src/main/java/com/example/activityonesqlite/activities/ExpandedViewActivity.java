@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.databases.DBHelper;
-import com.example.activityonesqlite.models.ItemModel;
+import com.example.activityonesqlite.models.entities.ItemModel;
 import com.example.activityonesqlite.utilites.AdapterUtility;
 
 import java.util.ArrayList;

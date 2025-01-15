@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.activityonesqlite.adapters.ItemListAdapter;
 import com.example.activityonesqlite.adapters.ScheduleListAdapter;
 import com.example.activityonesqlite.databases.DBHelper;
-import com.example.activityonesqlite.models.ItemModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterUtility {
 

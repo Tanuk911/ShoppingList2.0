@@ -1,4 +1,4 @@
-package com.example.activityonesqlite.models;
+package com.example.activityonesqlite.models.entities;
 
 public class ItemModel {
 

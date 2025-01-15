@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.activityonesqlite.models.ItemModel;
-import com.example.activityonesqlite.models.ScheduleModel;
+import com.example.activityonesqlite.models.entities.ItemModel;
+import com.example.activityonesqlite.models.entities.ScheduleModel;
 
 import java.util.ArrayList;
 import java.util.List;

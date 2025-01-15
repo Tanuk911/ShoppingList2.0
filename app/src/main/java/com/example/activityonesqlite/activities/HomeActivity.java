@@ -14,10 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.activityonesqlite.adapters.ScheduleListAdapter;
 import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
-import com.example.activityonesqlite.models.ScheduleModel;
+import com.example.activityonesqlite.models.entities.ScheduleModel;
 import com.example.activityonesqlite.utilites.DateUtility;
 import com.example.activityonesqlite.utilites.AdapterUtility;
 

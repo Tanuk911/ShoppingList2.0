@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.activities.ExpandedViewActivity;
-import com.example.activityonesqlite.models.ScheduleModel;
+import com.example.activityonesqlite.models.entities.ScheduleModel;
 import com.example.activityonesqlite.utilites.DialogUtility;
 
 import java.util.List;
