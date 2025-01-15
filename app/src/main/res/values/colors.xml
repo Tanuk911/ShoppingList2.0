@@ -9,6 +9,11 @@
     <color name="tropical_blue">#b9e5f5</color>
     <color name="mindaro_yellow">#eef589</color>
     <color name="cornfield_yellow">#f4f7b7</color>
-    <color name="light_purple">#d0adf7</color>
+    <color name="studio_purple">#854aad</color>
+    <color name="heliotrope_purple">#bd7af1</color>
+    <color name="perfume_purple">#d0adf7</color>
+    <color name="burntsienna_red">#ef685c</color>
+    <color name="flory_red">#f1847a</color>
     <color name="manhattan_red">#f7baad</color>
+    <color name="everglade_green">#2b5825</color>
 </resources>

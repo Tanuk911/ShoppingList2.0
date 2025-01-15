@@ -59,12 +59,14 @@
 
     </LinearLayout>
 
-        <Button
+        <ImageButton
             android:id="@+id/schedule_item_view_btnDelete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:background="@drawable/baseline_delete_forever_24"/>
+            android:src="@drawable/baseline_delete_forever_24"
+            android:scaleType="fitCenter"
+            android:background="@color/mindaro_yellow"/>
 
 </LinearLayout>

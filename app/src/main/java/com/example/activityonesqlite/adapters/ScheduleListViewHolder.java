@@ -1,7 +1,7 @@
 package com.example.activityonesqlite.adapters;
 
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,7 +13,7 @@ import com.example.activityonesqlite.R;
 public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
 
     TextView txtDate, txtLocation;
-    Button btnDelete;
+    ImageButton imgBtnDelete;
     LinearLayout mainLinear;
     public ScheduleListViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -21,7 +21,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
         txtLocation = itemView.findViewById(R.id.schedule_item_view_txtLocation);
 
         mainLinear = itemView.findViewById(R.id.schedule_item_view_mainLinear);
-        btnDelete = itemView.findViewById(R.id.schedule_item_view_btnDelete);
+        imgBtnDelete = itemView.findViewById(R.id.schedule_item_view_btnDelete);
 
     }
 }

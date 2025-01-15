@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.ExpandedViewActivity"
-    android:padding="5dp"
     android:background="@color/sail_blue">
 
     <ImageButton
@@ -15,6 +14,7 @@
         android:layout_height="0dp"
         android:src="@drawable/baseline_chevron_left_24"
         android:background="@color/sail_blue"
+        android:layout_marginStart="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/expanded_view_linear1"/>
@@ -26,6 +26,7 @@
         android:paddingVertical="5dp"
         android:text="List"
         android:textSize="30sp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -37,6 +38,8 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/expanded_view_txtTitle">
 
         <TextView
@@ -62,6 +65,8 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="4"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@+id/expanded_view_linear1">
 
         <TextView
@@ -85,6 +90,8 @@
         android:id="@+id/expanded_view_recyclerList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@id/expanded_view_linear2"
         app:layout_constraintBottom_toTopOf="@+id/expanded_view_linear4"/>
 
@@ -94,8 +101,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="5"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintTop_toBottomOf="@id/expanded_view_recyclerList"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/spray_blue">
 
         <EditText
             android:id="@+id/expanded_view_edtxtNewItem"
@@ -118,13 +128,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1.4" />
 
-        <Button
+        <ImageButton
             android:id="@+id/expanded_view_btnAdd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.8"
-            android:background="@drawable/baseline_add_24" />
+            android:src="@drawable/baseline_add_24"
+            android:background="@color/spray_blue"
+            android:scaleType="fitCenter"/>
 
         <!--        <Button-->
         <!--            android:id="@+id/expanded_view_btnMinus"-->

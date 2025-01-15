@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.example.activityonesqlite.R;
 
 import java.lang.reflect.Method;
@@ -30,7 +32,8 @@ public class DialogUtility {
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.custom_alert_dialog);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.dialog_background));
+        dialog.setCancelable(false);
         dialog.show();
 
         btnCancel = dialog.findViewById(R.id.custom_alert_btnCancel);

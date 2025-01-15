@@ -2,12 +2,10 @@ package com.example.activityonesqlite.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +26,7 @@ public class ExpandedViewActivity extends AppCompatActivity {
     ImageButton btnBack;
     TextView txtDate, txtLocation;
     RecyclerView listsRecyclerView;
-    Button btnPlus;
+    ImageButton imgBtnPlus;
     EditText edTxtAddItem, edTxtQuantity;
     Spinner spinnerUnits;
     AdapterUtility adapterUtility = new AdapterUtility(ExpandedViewActivity.this);
@@ -55,7 +53,7 @@ public class ExpandedViewActivity extends AppCompatActivity {
 
     private void casting() {
         btnBack = findViewById(R.id.expanded_view_close);
-        btnPlus = findViewById(R.id.expanded_view_btnAdd);
+        imgBtnPlus = findViewById(R.id.expanded_view_btnAdd);
         txtDate = findViewById(R.id.expanded_view_txtDate);
         txtLocation = findViewById(R.id.expanded_view_txtLocation);
         listsRecyclerView = findViewById(R.id.expanded_view_recyclerList);
@@ -97,7 +95,7 @@ public class ExpandedViewActivity extends AppCompatActivity {
     }
 
     private void onClickListeners() {
-        btnPlus.setOnClickListener(new View.OnClickListener() {
+        imgBtnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addItemToList();

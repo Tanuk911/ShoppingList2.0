@@ -5,7 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="2dp"
     android:background="@drawable/item_view_background"
-    android:paddingHorizontal="4dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
     android:layout_margin="3dp">
 
     <TextView
@@ -42,8 +43,8 @@
         android:id="@+id/list_item_view_imgBtnMinus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_minus_24"
-        android:background="@color/white"
+        android:src="@drawable/baseline_minus_nobg_rule_24"
+        android:background="@color/mindaro_yellow"
         app:layout_constraintStart_toEndOf="@+id/list_item_view_txtItemUnit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

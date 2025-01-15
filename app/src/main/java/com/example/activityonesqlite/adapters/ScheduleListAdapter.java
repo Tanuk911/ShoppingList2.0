@@ -51,7 +51,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
             }
         });
 
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+        holder.imgBtnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogUtility dialogUtility = new DialogUtility(context);
