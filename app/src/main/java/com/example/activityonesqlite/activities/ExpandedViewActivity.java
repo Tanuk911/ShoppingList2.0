@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.databases.DBHelper;
-import com.example.activityonesqlite.models.entities.ItemModel;
+import com.example.activityonesqlite.models.entities.ListItem;
 import com.example.activityonesqlite.utilites.AdapterUtility;
 
 import java.util.ArrayList;
@@ -121,8 +121,8 @@ public class ExpandedViewActivity extends AppCompatActivity {
         } else if (String.valueOf(itemQty).isEmpty()){
             edTxtQuantity.setError("Provide Item Quantity");
         } else {
-            ItemModel itemModel = new ItemModel(scheduleId, itemName, itemQty, itemUnit);
-            dbHelper.addListItem(itemModel);
+            ListItem listItem = new ListItem(scheduleId, itemName, itemQty, itemUnit);
+            dbHelper.addListItem(listItem);
             edTxtAddItem.setText("");
             edTxtQuantity.setText("");
             setupRecyclerView();

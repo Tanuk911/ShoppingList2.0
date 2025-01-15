@@ -1,12 +1,12 @@
 package com.example.activityonesqlite.models.entities;
 
-public class ScheduleModel {
+public class Schedule {
 
     private int id;
     private String date;
     private String location;
 
-    public ScheduleModel(int id, String date, String location) {
+    public Schedule(int id, String date, String location) {
         this.id = id;
         this.date = date;
         this.location = location;

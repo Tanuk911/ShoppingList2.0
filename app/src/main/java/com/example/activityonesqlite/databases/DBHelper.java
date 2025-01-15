@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.activityonesqlite.models.entities.ItemModel;
-import com.example.activityonesqlite.models.entities.ScheduleModel;
+import com.example.activityonesqlite.models.entities.ListItem;
+import com.example.activityonesqlite.models.entities.Schedule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,13 +49,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addSchedule(ScheduleModel scheduleModel) {
+    public boolean addSchedule(Schedule schedule) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        String date = scheduleModel.getDate();
-        String location = scheduleModel.getLocation();
+        String date = schedule.getDate();
+        String location = schedule.getLocation();
 
         if (checkForDuplicateSchedules(db, date, location)) {
             Toast.makeText(context, "This Schedule Already Exists", Toast.LENGTH_LONG).show();
@@ -74,15 +74,15 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean addListItem(ItemModel itemModel) {
+    public boolean addListItem(ListItem listItem) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
-        int scheduleId = itemModel.getScheduleId();
-        String itemName = itemModel.getItemName();
-        String itemUnit = itemModel.getItemUnit();
-        float itemQty = itemModel.getItemQty();
+        int scheduleId = listItem.getScheduleId();
+        String itemName = listItem.getItemName();
+        String itemUnit = listItem.getItemUnit();
+        float itemQty = listItem.getItemQty();
 
         if (checkForDuplicateListItems(db, scheduleId, itemName)) {
             Toast.makeText(context, "This Item already exists in this List", Toast.LENGTH_LONG).show();
@@ -103,9 +103,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public List<ItemModel> getAllLists(int scheduleID) {
+    public List<ListItem> getAllLists(int scheduleID) {
 
-        List<ItemModel> returnList = new ArrayList<>();
+        List<ListItem> returnList = new ArrayList<>();
 
         String queryString = "SELECT * FROM " + LIST_TABLE + " WHERE " + LIST_SCHEDULE_ID + " = '" + scheduleID + "'";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -118,8 +118,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 float itemQty = cursor.getFloat(3);
                 String itemUnit = cursor.getString(4);
 
-                ItemModel itemModel = new ItemModel(itemScheduleID, itemName, itemQty, itemUnit);
-                returnList.add(itemModel);
+                ListItem listItem = new ListItem(itemScheduleID, itemName, itemQty, itemUnit);
+                returnList.add(listItem);
             } while (cursor.moveToNext());
         }
         cursor.close();
@@ -127,8 +127,8 @@ public class DBHelper extends SQLiteOpenHelper {
         return returnList;
     }
 
-    public List<ScheduleModel> getAllSchedules() {
-        List<ScheduleModel> returnList = new ArrayList<>();
+    public List<Schedule> getAllSchedules() {
+        List<Schedule> returnList = new ArrayList<>();
 
         //getting data from DB
         String queryString = "SELECT * FROM " + SCHEDULE_TABLE;
@@ -143,7 +143,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String scheduleDate = cursor.getString(1);
                 String scheduleLocation = cursor.getString(2);
 
-                ScheduleModel newSchedule = new ScheduleModel(scheduleID, scheduleDate, scheduleLocation);
+                Schedule newSchedule = new Schedule(scheduleID, scheduleDate, scheduleLocation);
                 returnList.add(newSchedule);
             } while (cursor.moveToNext());
         }

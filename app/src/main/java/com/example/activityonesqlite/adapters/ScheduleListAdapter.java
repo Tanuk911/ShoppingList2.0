@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.activities.ExpandedViewActivity;
-import com.example.activityonesqlite.models.entities.ScheduleModel;
+import com.example.activityonesqlite.models.entities.Schedule;
 import com.example.activityonesqlite.utilites.DialogUtility;
 
 import java.util.List;
@@ -20,9 +20,9 @@ import java.util.List;
 public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHolder> {
 
     Context context;
-    List<ScheduleModel> allSchedules;
+    List<Schedule> allSchedules;
 
-    public ScheduleListAdapter(Context context, List<ScheduleModel> allSchedules) {
+    public ScheduleListAdapter(Context context, List<Schedule> allSchedules) {
         this.context = context;
         this.allSchedules = allSchedules;
     }

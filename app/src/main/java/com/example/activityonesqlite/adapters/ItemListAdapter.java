@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.databases.DBHelper;
-import com.example.activityonesqlite.models.entities.ItemModel;
+import com.example.activityonesqlite.models.entities.ListItem;
 import com.example.activityonesqlite.utilites.DialogUtility;
 
 import java.util.List;
@@ -19,9 +19,9 @@ import java.util.List;
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
 
     Context context;
-    List<ItemModel> allItemLists;
+    List<ListItem> allItemLists;
 
-    public ItemListAdapter(Context context, List<ItemModel> allItemLists) {
+    public ItemListAdapter(Context context, List<ListItem> allItemLists) {
         this.context = context;
         this.allItemLists = allItemLists;
     }
@@ -35,11 +35,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ItemListViewHolder holder, int position) {
         DBHelper dbHelper = new DBHelper(context);
-        ItemModel currentItem = allItemLists.get(holder.getAdapterPosition());
+        ListItem currentListItem = allItemLists.get(holder.getAdapterPosition());
 
-        holder.txtItemName.setText(currentItem.getItemName());
-        holder.txtItemQty.setText(Float.toString(currentItem.getItemQty()));
-        holder.txtItemUnit.setText(currentItem.getItemUnit());
+        holder.txtItemName.setText(currentListItem.getItemName());
+        holder.txtItemQty.setText(Float.toString(currentListItem.getItemQty()));
+        holder.txtItemUnit.setText(currentListItem.getItemUnit());
 
         holder.imgBtnMinus.setOnClickListener(new View.OnClickListener() {
 
@@ -51,7 +51,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
                     @Override
                     public void onResult(boolean proceed) {
                         if (proceed) {
-                            boolean isDeleted = dbHelper.deleteListItem(currentItem.getScheduleId(), currentItem.getItemName());
+                            boolean isDeleted = dbHelper.deleteListItem(currentListItem.getScheduleId(), currentListItem.getItemName());
                             if (isDeleted) {
                                 allItemLists.remove(holder.getAdapterPosition());
                                 notifyItemRemoved(holder.getAdapterPosition());

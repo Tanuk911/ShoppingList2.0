@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ActivityOneSQLite" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/studio_purple</item>
+        <listItem name="colorPrimary">@color/studio_purple</listItem>
     </style>
 
     <style name="Theme.ActivityOneSQLite" parent="Base.Theme.ActivityOneSQLite" />

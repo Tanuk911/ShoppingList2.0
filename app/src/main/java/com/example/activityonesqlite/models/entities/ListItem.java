@@ -1,12 +1,12 @@
 package com.example.activityonesqlite.models.entities;
 
-public class ItemModel {
+public class ListItem {
 
     int scheduleId;
     String itemName, itemUnit;
     float itemQty;
 
-    public ItemModel(int scheduleId, String itemName, float itemQty, String itemUnit) {
+    public ListItem(int scheduleId, String itemName, float itemQty, String itemUnit) {
         this.scheduleId = scheduleId;
         this.itemName = itemName;
         this.itemQty = itemQty;

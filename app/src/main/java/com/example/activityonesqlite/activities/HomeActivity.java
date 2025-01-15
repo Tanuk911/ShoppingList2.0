@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
-import com.example.activityonesqlite.models.entities.ScheduleModel;
+import com.example.activityonesqlite.models.entities.Schedule;
 import com.example.activityonesqlite.utilites.DateUtility;
 import com.example.activityonesqlite.utilites.AdapterUtility;
 
@@ -90,12 +90,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void addScheduleButton(){
-        List<ScheduleModel> allSchedules = dbHelper.getAllSchedules();
+        List<Schedule> allSchedules = dbHelper.getAllSchedules();
 
         String date = new DateUtility(datePicker).getDate();
         String location = spinnerLocation.getSelectedItem().toString();
-        ScheduleModel scheduleModel = new ScheduleModel(-1, date, location);
-        dbHelper.addSchedule(scheduleModel);
+        Schedule schedule = new Schedule(-1, date, location);
+        dbHelper.addSchedule(schedule);
 
         setupRecyclerView();
     }
