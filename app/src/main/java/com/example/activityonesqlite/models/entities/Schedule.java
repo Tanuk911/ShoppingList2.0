@@ -1,47 +1,47 @@
 package com.example.activityonesqlite.models.entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "Schedules",
+indices = {@Index(value = {"scheduleDate", "scheduleLocation"}, unique = true)})
 public class Schedule {
 
-    private int id;
-    private String date;
-    private String location;
+    @PrimaryKey(autoGenerate = true)
+    private int scheduleId;
 
-    public Schedule(int id, String date, String location) {
-        this.id = id;
-        this.date = date;
-        this.location = location;
+    private String scheduleDate;
+
+    private String scheduleLocation;
+
+    public Schedule(String scheduleDate, String scheduleLocation) {
+        this.scheduleDate = scheduleDate;
+        this.scheduleLocation = scheduleLocation;
     }
 
-    @Override
-    public String toString() {
-        return "ScheduleModel{" +
-                "id=" + id +
-                ", date='" + date + '\'' +
-                ", location='" + location + '\'' +
-                '}';
+    public int getScheduleId() {
+        return scheduleId;
     }
 
-    public int getId() {
-        return id;
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getScheduleDate() {
+        return scheduleDate;
     }
 
-    public String getDate() {
-        return date;
+    public void setScheduleDate(String scheduleDate) {
+        this.scheduleDate = scheduleDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getScheduleLocation() {
+        return scheduleLocation;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setScheduleLocation(String scheduleLocation) {
+        this.scheduleLocation = scheduleLocation;
     }
 }

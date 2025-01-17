@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.activityonesqlite.databases.DBHelper;
+import com.example.activityonesqlite.application.App;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.activities.ExpandedViewActivity;
 import com.example.activityonesqlite.models.entities.Schedule;
-import com.example.activityonesqlite.utilites.DialogUtility;
+import com.example.activityonesqlite.utils.DialogUtility;
+import com.example.activityonesqlite.utils.ExecutorUtility;
 
 import java.util.List;
 
@@ -35,8 +36,8 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ScheduleListViewHolder holder, int position) {
-        String date = allSchedules.get(holder.getAdapterPosition()).getDate();
-        String location = allSchedules.get(holder.getAdapterPosition()).getLocation();
+        String date = allSchedules.get(holder.getAdapterPosition()).getScheduleDate();
+        String location = allSchedules.get(holder.getAdapterPosition()).getScheduleLocation();
 
         holder.txtDate.setText(date);
         holder.txtLocation.setText(location);
@@ -44,10 +45,16 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         holder.mainLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ExpandedViewActivity.class);
-                intent.putExtra("PositionDate", date);
-                intent.putExtra("PositionLocation", location);
-                context.startActivity(intent);
+                ExecutorUtility.runOnBackgroundThread(() -> {
+                    int scheduleId = App.getInstance().getDatabaseInstance().scheduleDao().getScheduleId(date, location);
+
+                    ExecutorUtility.runOnMainThread(() -> {
+
+                        Intent intent = new Intent(context, ExpandedViewActivity.class);
+                        intent.putExtra("ScheduleId", scheduleId);
+                        context.startActivity(intent);
+                    });
+                });
             }
         });
 
@@ -59,11 +66,15 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
                     @Override
                     public void onResult(boolean proceed) {
                         if (proceed) {
-                            new DBHelper(context).deleteSchedule(date, location);
+                            ExecutorUtility.runOnBackgroundThread(() -> {
+                                App.getInstance().getDatabaseInstance().scheduleDao().deleteSchedule(allSchedules.get(holder.getAdapterPosition()));
 
-                            allSchedules.remove(holder.getAdapterPosition());
-                            notifyItemRemoved(holder.getAdapterPosition());
-                            notifyItemRangeChanged(holder.getAdapterPosition(), allSchedules.size());
+                                ExecutorUtility.runOnMainThread(() -> {
+                                    allSchedules.remove(holder.getAdapterPosition());
+                                    notifyItemRemoved(holder.getAdapterPosition());
+                                    notifyItemRangeChanged(holder.getAdapterPosition(), allSchedules.size());
+                                });
+                            });
                         }
                     }
                 });

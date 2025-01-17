@@ -1,11 +1,13 @@
 package com.example.activityonesqlite.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +16,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.activityonesqlite.databases.DBHelper;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.models.entities.Schedule;
-import com.example.activityonesqlite.utilites.DateUtility;
-import com.example.activityonesqlite.utilites.AdapterUtility;
+import com.example.activityonesqlite.utils.DateUtility;
+import com.example.activityonesqlite.utils.AdapterUtility;
+import com.example.activityonesqlite.application.App;
+import com.example.activityonesqlite.utils.ExecutorUtility;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -29,8 +31,8 @@ public class HomeActivity extends AppCompatActivity {
     Spinner spinnerLocation;
     RecyclerView txtScheduleList;
     Button btnAdd, btnView;
-    DBHelper dbHelper = new DBHelper(HomeActivity.this);
     AdapterUtility adapterUtility = new AdapterUtility(this);
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +92,26 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void addScheduleButton(){
-        List<Schedule> allSchedules = dbHelper.getAllSchedules();
 
         String date = new DateUtility(datePicker).getDate();
         String location = spinnerLocation.getSelectedItem().toString();
-        Schedule schedule = new Schedule(-1, date, location);
-        dbHelper.addSchedule(schedule);
+        Schedule schedule = new Schedule(date, location);
 
-        setupRecyclerView();
+        ExecutorUtility.runOnBackgroundThread(() -> {
+
+            long result = App.getInstance().getDatabaseInstance().scheduleDao().insertSchedule(schedule);
+
+            ExecutorUtility.runOnMainThread(() -> {
+
+                if (result == -1) {
+                    Toast.makeText(HomeActivity.this, "Schedule Already Exists!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(HomeActivity.this, "New Schedule Added", Toast.LENGTH_SHORT).show();
+                    setupRecyclerView();
+                }
+            });
+
+        });
     }
 
     private void openListActivities(){

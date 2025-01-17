@@ -1,13 +1,8 @@
 package com.example.activityonesqlite.activities;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
-import com.example.activityonesqlite.utilites.AdapterUtility;
-
-import java.util.ArrayList;
+import com.example.activityonesqlite.utils.AdapterUtility;
 
 public class ListsActivity extends AppCompatActivity {
 
