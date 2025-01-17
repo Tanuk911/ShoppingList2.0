@@ -1,17 +1,14 @@
-package com.example.activityonesqlite.utilites;
+package com.example.activityonesqlite.utils;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.activityonesqlite.R;
-
-import java.lang.reflect.Method;
 
 public class DialogUtility {
 

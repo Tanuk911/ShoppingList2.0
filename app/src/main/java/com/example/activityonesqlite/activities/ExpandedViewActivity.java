@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,11 +16,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
-import com.example.activityonesqlite.databases.DBHelper;
-import com.example.activityonesqlite.models.entities.ItemModel;
-import com.example.activityonesqlite.utilites.AdapterUtility;
+import com.example.activityonesqlite.application.App;
+import com.example.activityonesqlite.models.entities.ListItem;
+import com.example.activityonesqlite.models.entities.Schedule;
+import com.example.activityonesqlite.utils.AdapterUtility;
+import com.example.activityonesqlite.utils.ExecutorUtility;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ExpandedViewActivity extends AppCompatActivity {
 
@@ -30,7 +35,6 @@ public class ExpandedViewActivity extends AppCompatActivity {
     EditText edTxtAddItem, edTxtQuantity;
     Spinner spinnerUnits;
     AdapterUtility adapterUtility = new AdapterUtility(ExpandedViewActivity.this);
-    DBHelper dbHelper = new DBHelper(ExpandedViewActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,26 +66,27 @@ public class ExpandedViewActivity extends AppCompatActivity {
         spinnerUnits = findViewById(R.id.expanded_view_spinnerUnits);
     }
 
-    private String[] getExtras() {
-        String[] extrasArray = new String[2];
+    private int getExtras() {
         Bundle extras = getIntent().getExtras();
-        String date = extras.getString("PositionDate");
-        String location = extras.getString("PositionLocation");
-        //The key argument here must match that used in the other activity
+        int scheduleId = extras.getInt("ScheduleId");
 
-        extrasArray[0] = date;
-        extrasArray[1] = location;
-
-        return extrasArray;
+        return scheduleId;
     }
 
     private void setViewText() {
-        txtDate.setText(getExtras()[0]);
-        txtLocation.setText(getExtras()[1]);
+        ExecutorUtility.runOnBackgroundThread(() -> {
+
+            Schedule schedule = App.getInstance().getDatabaseInstance().scheduleDao().getScheduleById(getExtras());
+
+            ExecutorUtility.runOnMainThread(() -> {
+                txtDate.setText(schedule.getScheduleDate());
+                txtLocation.setText(schedule.getScheduleLocation());
+            });
+        });
     }
 
     private void setupRecyclerView() {
-        adapterUtility.setupListRecyclerView(listsRecyclerView, getExtras()[0], getExtras()[1]);
+        adapterUtility.setupListRecyclerView(listsRecyclerView, getExtras());
     }
 
     private void setupSpinner() {
@@ -111,21 +116,30 @@ public class ExpandedViewActivity extends AppCompatActivity {
     }
 
     private void addItemToList() {
-        int scheduleId = dbHelper.getScheduleId(getExtras()[0], getExtras()[1]);
         String itemName = edTxtAddItem.getText().toString();
         float itemQty = Float.parseFloat(edTxtQuantity.getText().toString());
         String itemUnit = spinnerUnits.getSelectedItem().toString();
 
-        if (itemName.isEmpty()){
+        if (itemName.isEmpty()) {
             edTxtAddItem.setError("Provide Item Name");
-        } else if (String.valueOf(itemQty).isEmpty()){
+        } else if (String.valueOf(itemQty).isEmpty()) {
             edTxtQuantity.setError("Provide Item Quantity");
         } else {
-            ItemModel itemModel = new ItemModel(scheduleId, itemName, itemQty, itemUnit);
-            dbHelper.addListItem(itemModel);
-            edTxtAddItem.setText("");
-            edTxtQuantity.setText("");
-            setupRecyclerView();
+            ListItem listItem = new ListItem(getExtras(), itemName, itemQty, itemUnit);
+            ExecutorUtility.runOnBackgroundThread(() -> {
+
+                long result = App.getInstance().getDatabaseInstance().listItemDao().insertListItem(listItem);
+
+                ExecutorUtility.runOnMainThread(() -> {
+                    if (result == -1){
+                        Toast.makeText(ExpandedViewActivity.this, "Item Already Exists in this Schedule", Toast.LENGTH_SHORT).show();
+                    }
+                    edTxtAddItem.setText("");
+                    edTxtQuantity.setText("");
+                    setupRecyclerView();
+                });
+            });
         }
+
     }
 }

@@ -1,4 +1,4 @@
-package com.example.activityonesqlite.utilites;
+package com.example.activityonesqlite.utils;
 
 import android.widget.DatePicker;
 
