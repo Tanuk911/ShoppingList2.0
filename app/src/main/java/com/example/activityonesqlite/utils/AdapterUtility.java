@@ -3,11 +3,13 @@ package com.example.activityonesqlite.utils;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.adapters.ItemListAdapter;
+import com.example.activityonesqlite.adapters.ItemListEditAdapter;
 import com.example.activityonesqlite.adapters.ScheduleListAdapter;
 import com.example.activityonesqlite.application.App;
 import com.example.activityonesqlite.models.entities.ListItem;
@@ -49,9 +51,27 @@ public class AdapterUtility {
         });
     }
 
+    public void setupEditListRecyclerView(RecyclerView recyclerView, int scheduleId) {
+        ExecutorUtility.runOnBackgroundThread(() -> {
+            List<ListItem> listItems = App.getInstance().getDatabaseInstance().listItemDao().getListItemsByScheduleId(scheduleId);
+
+            ExecutorUtility.runOnMainThread(() -> {
+                ItemListEditAdapter itemListEditAdapter = new ItemListEditAdapter(context, listItems);
+
+                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setAdapter(itemListEditAdapter);
+            });
+        });
+    }
+
     public void setSpinner(ArrayList<String> spinnerItems, Spinner spinner) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, spinnerItems);
         adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
         spinner.setAdapter(adapter);
+    }
+
+    public void setTextViewSpinner(ArrayList<String> spinnerItems, TextView textView) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, spinnerItems);
+        adapter.setDropDownViewResource(android.R.layout.select_dialog_singlechoice);
     }
 }

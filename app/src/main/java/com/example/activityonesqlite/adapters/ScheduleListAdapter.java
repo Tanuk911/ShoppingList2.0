@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.activityonesqlite.activities.ListItemsFrameActivity;
 import com.example.activityonesqlite.application.App;
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.activities.ExpandedViewActivity;
@@ -50,7 +51,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
                     ExecutorUtility.runOnMainThread(() -> {
 
-                        Intent intent = new Intent(context, ExpandedViewActivity.class);
+                        Intent intent = new Intent(context, ListItemsFrameActivity.class);
                         intent.putExtra("ScheduleId", scheduleId);
                         context.startActivity(intent);
                     });

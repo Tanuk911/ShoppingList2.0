@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
 import com.example.activityonesqlite.application.App;
+import com.example.activityonesqlite.constants.AppConstants;
 import com.example.activityonesqlite.models.entities.ListItem;
 import com.example.activityonesqlite.models.entities.Schedule;
 import com.example.activityonesqlite.utils.AdapterUtility;
@@ -90,13 +91,7 @@ public class ExpandedViewActivity extends AppCompatActivity {
     }
 
     private void setupSpinner() {
-        ArrayList<String> unitsList = new ArrayList<>();
-        unitsList.add("Kg");
-        unitsList.add("L");
-        unitsList.add("Packets");
-        unitsList.add("No");
-
-        adapterUtility.setSpinner(unitsList, spinnerUnits);
+        adapterUtility.setSpinner(AppConstants.getUnits(), spinnerUnits);
     }
 
     private void onClickListeners() {

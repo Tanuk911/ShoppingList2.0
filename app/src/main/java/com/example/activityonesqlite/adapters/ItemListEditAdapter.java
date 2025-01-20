@@ -14,31 +14,32 @@ import com.example.activityonesqlite.models.entities.ListItem;
 import com.example.activityonesqlite.utils.DialogUtility;
 import com.example.activityonesqlite.utils.ExecutorUtility;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
+public class ItemListEditAdapter extends RecyclerView.Adapter<itemListEditViewHolder> {
 
     Context context;
-    List<ListItem> allItemLists;
+    List<ListItem> allListItems;
 
-    public ItemListAdapter(Context context, List<ListItem> allItemLists) {
+    public ItemListEditAdapter(Context context, List<ListItem> allListItems){
         this.context = context;
-        this.allItemLists = allItemLists;
+        this.allListItems = allListItems;
     }
 
     @NonNull
     @Override
-    public ItemListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemListViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item_view, parent, false));
+    public itemListEditViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new itemListEditViewHolder(LayoutInflater.from(context).inflate(R.layout.list_item_edit_view, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemListViewHolder holder, int position) {
-        ListItem currentListItem = allItemLists.get(holder.getAdapterPosition());
+    public void onBindViewHolder(@NonNull itemListEditViewHolder holder, int position) {
+        ListItem currentListItem = allListItems.get(holder.getAdapterPosition());
 
-        holder.txtItemName.setText(currentListItem.getItemName());
-        holder.txtItemQty.setText(Float.toString(currentListItem.getItemQuantity()));
-        holder.txtItemUnit.setText(currentListItem.getItemUnit());
+        holder.edTxtItemName.setText(currentListItem.getItemName());
+        holder.edTxtItemQuantity.setText(Float.toString(currentListItem.getItemQuantity()));
+        holder.txtUnits.setText(currentListItem.getItemUnit());
 
         holder.imgBtnMinus.setOnClickListener(new View.OnClickListener() {
 
@@ -55,9 +56,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
                                 App.getInstance().getDatabaseInstance().listItemDao().deleteListItem(currentListItem.getScheduleId(), currentListItem.getItemName());
 
                                 ExecutorUtility.runOnMainThread(() -> {
-                                    allItemLists.remove(holder.getAdapterPosition());
+                                    allListItems.remove(holder.getAdapterPosition());
                                     notifyItemRemoved(holder.getAdapterPosition());
-                                    notifyItemRangeChanged(holder.getAdapterPosition(), allItemLists.size());
+                                    notifyItemRangeChanged(holder.getAdapterPosition(), allListItems.size());
                                 });
                             });
                         }
@@ -70,6 +71,6 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListViewHolder> {
 
     @Override
     public int getItemCount() {
-        return allItemLists.size();
+        return allListItems.size();
     }
 }

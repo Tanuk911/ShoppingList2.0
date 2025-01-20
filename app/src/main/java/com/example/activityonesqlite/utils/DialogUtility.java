@@ -35,7 +35,6 @@ public class DialogUtility {
 
         btnCancel = dialog.findViewById(R.id.custom_alert_btnCancel);
         btnOk = dialog.findViewById(R.id.custom_alert_btnSure);
-
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

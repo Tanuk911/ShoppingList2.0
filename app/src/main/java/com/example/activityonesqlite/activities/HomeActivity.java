@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.activityonesqlite.R;
+import com.example.activityonesqlite.constants.AppConstants;
 import com.example.activityonesqlite.models.entities.Schedule;
 import com.example.activityonesqlite.utils.DateUtility;
 import com.example.activityonesqlite.utils.AdapterUtility;
@@ -77,14 +78,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setupSpinnerLocation(){
-        ArrayList<String> locationsList = new ArrayList<>();
-        locationsList.add("Keels");
-        locationsList.add("Cargills");
-        locationsList.add("Arpico");
-        locationsList.add("Glomark");
-        locationsList.add("SPAR");
-
-        adapterUtility.setSpinner(locationsList, spinnerLocation);
+        adapterUtility.setSpinner(AppConstants.getLocations(), spinnerLocation);
     }
 
     private void setupRecyclerView(){
@@ -93,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void addScheduleButton(){
 
-        String date = new DateUtility(datePicker).getDate();
+        String date = DateUtility.getDateFromDatePicker(datePicker);
         String location = spinnerLocation.getSelectedItem().toString();
         Schedule schedule = new Schedule(date, location);
 

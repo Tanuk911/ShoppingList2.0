@@ -1,21 +1,22 @@
 package com.example.activityonesqlite.utils;
 
+import android.app.DatePickerDialog;
 import android.widget.DatePicker;
 
 public class DateUtility {
 
-    private DatePicker datePicker;
-
-    public DateUtility(DatePicker datePicker){
-        this.datePicker = datePicker;
+    public DateUtility(){
     }
 
-    public String getDate(){
+    public static String getDateFromDatePicker(DatePicker datePicker){
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth()+1;
         int year = datePicker.getYear();
 
-        String date = String.format("%02d/%02d/%04d", day, month, year);
-        return date;
+        return dateStringBuilder(day, month, year);
+    }
+
+    public static String dateStringBuilder(int day, int month, int year){
+        return String.format("%02d/%02d/%04d", day, month, year);
     }
 }
