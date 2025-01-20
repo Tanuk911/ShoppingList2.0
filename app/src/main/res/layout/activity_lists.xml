@@ -12,7 +12,7 @@
         android:id="@+id/lists_txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lists Report"
+        android:text="@string/list_title"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="10dp"
-        android:text="Back"/>
+        android:text="@string/back"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

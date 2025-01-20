@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
         app:layout_constraintEnd_toStartOf="@+id/list_item_view_txtItemQty"
-        android:text="ITEM"/>
+        android:text="@string/item_name"/>
 
     <TextView
         android:id="@+id/list_item_view_txtItemQty"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
         app:layout_constraintEnd_toStartOf="@+id/list_item_view_txtItemUnit"
-        android:text="QTY"/>
+        android:text="@string/quantity"/>
 
     <TextView
         android:id="@+id/list_item_view_txtItemUnit"
@@ -37,12 +37,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/list_item_view_imgBtnMinus"
         app:layout_constraintEnd_toStartOf="@+id/list_item_view_imgBtnMinus"
-        android:text="UNIT"/>
+        android:text="@string/unit"/>
 
     <ImageButton
         android:id="@+id/list_item_view_imgBtnMinus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/remove"
         android:src="@drawable/baseline_minus_nobg_rule_24"
         android:background="@color/mindaro_yellow"
         app:layout_constraintStart_toEndOf="@+id/list_item_view_txtItemUnit"

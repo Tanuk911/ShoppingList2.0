@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">ActivityOneSQLite</string>
+    <string name="home_title">Shopping List Tracker</string>
+    <string name="list_title">Lists Report</string>
+    <string name="add">Add</string>
+    <string name="view">View</string>
+    <string name="back">Back</string>
+    <string name="list">List</string>
+    <string name="date_prompt">Date: </string>
+    <string name="location_prompt">Location: </string>
+    <string name="date_format">DD/MM/YYYY</string>
+    <string name="date">Date</string>
+    <string name="location">Location</string>
+    <string name="item_name">Item Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="qty">Qty</string>
+    <string name="unit">Unit</string>
+    <string name="alert">Alert!</string>
+    <string name="confirm_item_delete_msg">Are you sure you want to delete this listItem?</string>
+    <string name="sure">Sure</string>
+    <string name="cancel">Cancel</string>
+    <string name="remove">Remove</string>
 </resources>
